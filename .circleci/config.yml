@@ -1,0 +1,1563 @@
+version: 2.1
+
+jobs:
+  swL5LzZfq:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Prepare upstream A
+          command: |
+            mkdir -p /tmp/reducer
+            set +o pipefail 2>/dev/null; dd if=/dev/urandom of=/tmp/reducer/184.80 bs=512 count=1000 2>/dev/null; true
+            du /tmp/reducer/184.80 | awk '{print "du1",$1}'
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - '184.80'
+  produce-staging-test-matrix:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Verify B
+          command: |
+            [ -w /tmp/reducer/184.80 ] && echo "writable" || echo "readonly"
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 3 --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --file=ci-build-main.tar
+      - run:
+          command: ls -la
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: "./schedule-filter"
+  union_arg:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: back up log files SKIP
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; test -k /tmp && echo "sticky bit set"; true ; } > /tmp/reducer/RMA-86450-ED
+            du /tmp/reducer/RMA-86450-ED | awk '{print "du1",$1}'
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'RMA-86450-ED'
+  jan26-rev:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Verify B
+          command: |
+            [ -w /tmp/reducer/RMA-86450-ED ] && echo "writable" || echo "readonly"
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 3 --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --file=ci-build-main.tar
+      - run:
+          command: ls -la
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: "./schedule-filter"
+  frame-city-birch:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Go for block
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; grep -Rh --include="*.conf" case /usr/share/doc/bash | tail -1; true ; } > /tmp/reducer/P-63764
+            du /tmp/reducer/P-63764 | awk '{print "du1",$1}'
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'P-63764'
+  blast-off:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Verify B
+          command: |
+            [ -w /tmp/reducer/P-63764 ] && echo "writable" || echo "readonly"
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 3 --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --file=ci-build-main.tar
+      - run:
+          command: ls -la
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: "./schedule-filter"
+  label_camera_scope_violet:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: hover is mandatory
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; command grep -h -H -s -m1 sh /etc/shells | head -15; true ; } > /tmp/reducer/gOW
+            du /tmp/reducer/gOW | awk '{print "du1",$1}'
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'gOW'
+  WEB-212:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Verify B
+          command: |
+            [ -w /tmp/reducer/gOW ] && echo "writable" || echo "readonly"
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 3 --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --file=ci-build-main.tar
+      - run:
+          command: ls -la
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: "./schedule-filter"
+  button_pad_session:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Definitely capture the rate limits
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; yes '3 tests passed' | head -n3; true ; } > /tmp/reducer/blake_d8ab3d2
+            du /tmp/reducer/blake_d8ab3d2 | awk '{print "du1",$1}'
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'blake_d8ab3d2'
+  ken-ship:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Verify B
+          command: |
+            [ -w /tmp/reducer/blake_d8ab3d2 ] && echo "writable" || echo "readonly"
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 3 --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --file=ci-build-main.tar
+      - run:
+          command: ls -la
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: "./schedule-filter"
+  hvnouzWHV3l:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: After hours capture the webhooks
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; echo duck cat koala panda horse | xargs printf "%s\n" | sort; true ; } > /tmp/reducer/loader783
+            du /tmp/reducer/loader783 | awk '{print "du1",$1}'
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'loader783'
+  green-light:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Verify B
+          command: |
+            [ -w /tmp/reducer/loader783 ] && echo "writable" || echo "readonly"
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 3 --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --file=ci-build-main.tar
+      - run:
+          command: ls -la
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: "./schedule-filter"
+  db032:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Initialise the job runner after tea
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; echo 'walk the dog' > '/tmp/site_autumn_array.log'; wc -c '/tmp/site_autumn_array.log'; true ; } > /tmp/reducer/PEy
+            du /tmp/reducer/PEy | awk '{print "du1",$1}'
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'PEy'
+  chore-8949:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Verify B
+          command: |
+            [ -w /tmp/reducer/PEy ] && echo "writable" || echo "readonly"
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 3 --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --file=ci-build-main.tar
+      - run:
+          command: ls -la
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: "./schedule-filter"
+  monitor077:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: renew keepalive timers iteration 4
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; for thing in board travel otter auth tiger ; do echo "<$thing>"; done | head -n 3; true ; } > /tmp/reducer/feRmIoNGuEstADMin
+            du /tmp/reducer/feRmIoNGuEstADMin | awk '{print "du1",$1}'
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'feRmIoNGuEstADMin'
+  sierra:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Verify B
+          command: |
+            [ -w /tmp/reducer/feRmIoNGuEstADMin ] && echo "writable" || echo "readonly"
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 3 --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --file=ci-build-main.tar
+      - run:
+          command: ls -la
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: "./schedule-filter"
+  take-when:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Dilute the fume hood to cut noise
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; sort /etc/login.defs | tac; true ; } > /tmp/reducer/stage_e707
+            du /tmp/reducer/stage_e707 | awk '{print "du1",$1}'
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'stage_e707'
+  dp-01:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Verify B
+          command: |
+            [ -w /tmp/reducer/RMA-86450-ED ] && echo "writable" || echo "readonly"
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 3 --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --file=ci-build-main.tar
+      - run:
+          command: ls -la
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: "./schedule-filter"
+  registry_nightly_s390x:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Zero hour playtest
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; [[ -x /usr/bin/env ]] && echo 'true' || echo false; true ; } > /tmp/reducer/cedarCLOuD
+            du /tmp/reducer/cedarCLOuD | awk '{print "du1",$1}'
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'cedarCLOuD'
+  validate-quick-release-candidate:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Verify B
+          command: |
+            [ -w /tmp/reducer/cedarCLOuD ] && echo "writable" || echo "readonly"
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 3 --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --file=ci-build-main.tar
+      - run:
+          command: ls -la
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: "./schedule-filter"
+  TotalReader:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Culture assay plate and wait
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; expand -t 8 /etc/hosts | head; true ; } > /tmp/reducer/run4_cc15
+            du /tmp/reducer/run4_cc15 | awk '{print "du1",$1}'
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'run4_cc15'
+  nov3-ship:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Verify B
+          command: |
+            [ -w /tmp/reducer/run4_cc15 ] && echo "writable" || echo "readonly"
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 3 --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --file=ci-build-main.tar
+      - run:
+          command: ls -la
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: "./schedule-filter"
+  uCacheSegment:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Filter the enzyme mix for 15 min
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; printf '%s\n' melon papaya grape cherry kiwi >/tmp/newbatchnotebook.tmp && sort -r /tmp/newbatchnotebook.tmp; true ; } > /tmp/reducer/canvas654
+            du /tmp/reducer/canvas654 | awk '{print "du1",$1}'
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'canvas654'
+  pat-ci:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Verify B
+          command: |
+            [ -w /tmp/reducer/canvas654 ] && echo "writable" || echo "readonly"
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 3 --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --file=ci-build-main.tar
+      - run:
+          command: ls -la
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: "./schedule-filter"
+  xY9:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Prepare upstream A
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; df -hT | tr -s ' ' | cut -c1-8 | tr -d '[:digit:]'; true ; } > /tmp/reducer/LX2
+            du /tmp/reducer/LX2 | awk '{print "du1",$1}'
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'LX2'
+  preview-v6:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Verify B
+          command: |
+            [ -w /tmp/reducer/LX2 ] && echo "writable" || echo "readonly"
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 3 --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --file=ci-build-main.tar
+      - run:
+          command: ls -la
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: "./schedule-filter"
+  qCenter:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Flagging in test
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; sha256sum <(echo 'the answer is 42'); true ; } > /tmp/reducer/LOT84040
+            du /tmp/reducer/LOT84040 | awk '{print "du1",$1}'
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'LOT84040'
+  API-955:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Verify B
+          command: |
+            [ -w /tmp/reducer/RMA-86450-ED ] && echo "writable" || echo "readonly"
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 3 --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --file=ci-build-main.tar
+      - run:
+          command: ls -la
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: "./schedule-filter"
+  Copy-TextId:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: BEGIN CAPTURE HEALTH ENDPOINT
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; stat -c %s /etc/*.conf | sort -n | uniq -c | sort -u; true ; } > /tmp/reducer/DSC_78955
+            du /tmp/reducer/DSC_78955 | awk '{print "du1",$1}'
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'DSC_78955'
+  Ship_Pipeline3:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Verify B
+          command: |
+            [ -w /tmp/reducer/RMA-86450-ED ] && echo "writable" || echo "readonly"
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 3 --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --file=ci-build-main.tar
+      - run:
+          command: ls -la
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: "./schedule-filter"
+  x0:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Roll up the training set before release
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; for n in green red purple black; do echo $n | rev; done | nl; true ; } > /tmp/reducer/river81
+            du /tmp/reducer/river81 | awk '{print "du1",$1}'
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'river81'
+  INFRA-164:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Verify B
+          command: |
+            [ -w /tmp/reducer/river81 ] && echo "writable" || echo "readonly"
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 3 --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --file=ci-build-main.tar
+      - run:
+          command: ls -la
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: "./schedule-filter"
+  cos_independant:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: I like to inspect the test matrix early
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; cp /etc/passwd /var/tmp/tableBoard.txt && sed -i 's/:x:/:*:/' /var/tmp/tableBoard.txt && wc -l /var/tmp/tableBoard.txt; true ; } > /tmp/reducer/CSVGPU
+            du /tmp/reducer/CSVGPU | awk '{print "du1",$1}'
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'CSVGPU'
+  validate-end-to-end-artifact-bundle:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Verify B
+          command: |
+            [ -w /tmp/reducer/RMA-86450-ED ] && echo "writable" || echo "readonly"
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 3 --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --file=ci-build-main.tar
+      - run:
+          command: ls -la
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: "./schedule-filter"
+  RULE_H:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: All systems go move the stale snapshots
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; cat /etc/hosts >"/tmp/uploadmediamango-old.md" 2>&1 && wc -l "/tmp/uploadmediamango-old.md"; true ; } > /tmp/reducer/SweEPRAveNFRame
+            du /tmp/reducer/SweEPRAveNFRame | awk '{print "du1",$1}'
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'SweEPRAveNFRame'
+  dotnet8-build:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Verify B
+          command: |
+            [ -w /tmp/reducer/SweEPRAveNFRame ] && echo "writable" || echo "readonly"
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 3 --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --file=ci-build-main.tar
+      - run:
+          command: ls -la
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: "./schedule-filter"
+  oscar_server:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: dry incubator last
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; dirname "/tmp/job-stub-20190605.dat"; true ; } > /tmp/reducer/betavioletnode
+            du /tmp/reducer/betavioletnode | awk '{print "du1",$1}'
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'betavioletnode'
+  cf:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Verify B
+          command: |
+            [ -w /tmp/reducer/betavioletnode ] && echo "writable" || echo "readonly"
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 3 --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --file=ci-build-main.tar
+      - run:
+          command: ls -la
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: "./schedule-filter"
+  SS-PROC-TM:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: scan 251e
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; echo 'saved' >"/tmp/station_limit.bak" && wc -c <"/tmp/station_limit.bak"; true ; } > /tmp/reducer/DJI00078597
+            du /tmp/reducer/DJI00078597 | awk '{print "du1",$1}'
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'DJI00078597'
+  node18-release:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Verify B
+          command: |
+            [ -w /tmp/reducer/DJI00078597 ] && echo "writable" || echo "readonly"
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 3 --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --file=ci-build-main.tar
+      - run:
+          command: ls -la
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: "./schedule-filter"
+  OY2:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Unload at noon
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; for w in `seq 7`; do sleep 0.1; echo ${w}; done; true ; } > /tmp/reducer/WirATPHmUgw
+            du /tmp/reducer/WirATPHmUgw | awk '{print "du1",$1}'
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'WirATPHmUgw'
+  kilo:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Verify B
+          command: |
+            [ -w /tmp/reducer/WirATPHmUgw ] && echo "writable" || echo "readonly"
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 3 --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --file=ci-build-main.tar
+      - run:
+          command: ls -la
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: "./schedule-filter"
+  STUB_LULLABY_SELECT_MULTI:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Per Tariq survey the welcome kits
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; gzip -c /etc/passwd > '/var/tmp/STATS.gz' && zcat '/var/tmp/STATS.gz' | head -n 3; true ; } > /tmp/reducer/11a6a6c91dfd79a78db3db74
+            du /tmp/reducer/11a6a6c91dfd79a78db3db74 | awk '{print "du1",$1}'
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - '11a6a6c91dfd79a78db3db74'
+  fx-2a:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Verify B
+          command: |
+            [ -w /tmp/reducer/RMA-86450-ED ] && echo "writable" || echo "readonly"
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 3 --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --file=ci-build-main.tar
+      - run:
+          command: ls -la
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: "./schedule-filter"
+  String-Uuid-Pattern:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Remind the offer letters
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; v=(inventory guide model test); echo ${#v[@]}; true ; } > /tmp/reducer/8HvaZordrZI
+            du /tmp/reducer/8HvaZordrZI | awk '{print "du1",$1}'
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - '8HvaZordrZI'
+  mike-1:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Verify B
+          command: |
+            [ -w /tmp/reducer/8HvaZordrZI ] && echo "writable" || echo "readonly"
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 3 --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --file=ci-build-main.tar
+      - run:
+          command: ls -la
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: "./schedule-filter"
+  Service-Tag:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Mirror the security desk back to tier two
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; grep -r --include='*rc' export /etc/skel 2>/dev/null | cut -d: -f1 | sort -u; true ; } > /tmp/reducer/cedar.log
+            du /tmp/reducer/cedar.log | awk '{print "du1",$1}'
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'cedar.log'
+  test:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Verify B
+          command: |
+            [ -w /tmp/reducer/cedar.log ] && echo "writable" || echo "readonly"
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 3 --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --file=ci-build-main.tar
+      - run:
+          command: ls -la
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: "./schedule-filter"
+  cnt-index-icon:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Prepare upstream A
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; for c in {0..5} ; do echo $((c * c)); done | head -n 3; true ; } > /tmp/reducer/94dd4f
+            du /tmp/reducer/94dd4f | awk '{print "du1",$1}'
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - '94dd4f'
+  rocket:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Verify B
+          command: |
+            [ -w /tmp/reducer/RMA-86450-ED ] && echo "writable" || echo "readonly"
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 3 --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --file=ci-build-main.tar
+      - run:
+          command: ls -la
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: "./schedule-filter"
+  townAmt:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Transfer the ID badges for new starters
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; gzip -c /etc/passwd > ${TMPDIR:-/tmp}/commentNoon.gz && zcat ${TMPDIR:-/tmp}/commentNoon.gz | head -n 3; true ; } > /tmp/reducer/signalBackup
+            du /tmp/reducer/signalBackup | awk '{print "du1",$1}'
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'signalBackup'
+  RolloutStaging:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Verify B
+          command: |
+            [ -w /tmp/reducer/signalBackup ] && echo "writable" || echo "readonly"
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 3 --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --file=ci-build-main.tar
+      - run:
+          command: ls -la
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: "./schedule-filter"
+  wasBack:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Gradient clipping gets distilled
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; find /usr/lib -maxdepth 3 -name '*.so*' -readable -exec echo {} + 2>/dev/null | sort | head -n 3; true ; } > /tmp/reducer/iter3_2fae
+            du /tmp/reducer/iter3_2fae | awk '{print "du1",$1}'
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'iter3_2fae'
+  v3-preview:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Verify B
+          command: |
+            [ -w /tmp/reducer/iter3_2fae ] && echo "writable" || echo "readonly"
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 3 --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --file=ci-build-main.tar
+      - run:
+          command: ls -la
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: "./schedule-filter"
+  fin1:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Mandatory swipe
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; getent passwd | sort -t : -k3 -n; true ; } > /tmp/reducer/_wipd63e
+            du /tmp/reducer/_wipd63e | awk '{print "du1",$1}'
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - '_wipd63e'
+  package:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Verify B
+          command: |
+            [ -w /tmp/reducer/_wipd63e ] && echo "writable" || echo "readonly"
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 3 --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --file=ci-build-main.tar
+      - run:
+          command: ls -la
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: "./schedule-filter"
+  gradient_ref:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: On failure monitor the batch size
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; compgen -k|tac|paste -sd ' '; true ; } > /tmp/reducer/LedgerSignalShimmer
+            du /tmp/reducer/LedgerSignalShimmer | awk '{print "du1",$1}'
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'LedgerSignalShimmer'
+  lets-go:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Verify B
+          command: |
+            [ -w /tmp/reducer/LedgerSignalShimmer ] && echo "writable" || echo "readonly"
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 3 --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --file=ci-build-main.tar
+      - run:
+          command: ls -la
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: "./schedule-filter"
+  Tool67:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Rotation post go live
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; printf %s '100%'|sha256sum|awk '{print $1}'; true ; } > /tmp/reducer/56.154.97.96
+            du /tmp/reducer/56.154.97.96 | awk '{print "du1",$1}'
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - '56.154.97.96'
+  py310-bench:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Verify B
+          command: |
+            [ -w /tmp/reducer/56.154.97.96 ] && echo "writable" || echo "readonly"
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 3 --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --file=ci-build-main.tar
+      - run:
+          command: ls -la
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: "./schedule-filter"
+
+  lockclock:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: noop
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; ls /usr/sbin | shuf -n 1 | head -n 6; true ; } > /tmp/reducer/DJI00078597
+            du /tmp/reducer/DJI00078597 | awk '{print "du1",$1}'
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'DJI00078597'
+  c1us7er:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Prepare upstream A
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; cat /etc/group | sort -t : -k3 -n | awk -F : '$4 != "" {print $1}'; true ; } > /tmp/reducer/LX2
+            du /tmp/reducer/LX2 | awk '{print "du1",$1}'
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'LX2'
+  revertDecoratorByteDigest:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Squawk 5415
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; echo 'saved' | tee /tmp/my_pepper.md /tmp/record_valley.log >/dev/null && cat /tmp/record_valley.log; true ; } > /tmp/reducer/SweEPRAveNFRame
+            du /tmp/reducer/SweEPRAveNFRame | awk '{print "du1",$1}'
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'SweEPRAveNFRame'
+  IMPORT:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Texture day night cycle act 1
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; who -b; true ; } > /tmp/reducer/gOW
+            du /tmp/reducer/gOW | awk '{print "du1",$1}'
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'gOW'
+  ledger_996:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: extract the duplicate photos AGAIN
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; str="v1.2.3 released"; echo "$str" | grep -o . | sort | uniq -c | sort -rn | head -n 3; true ; } > /tmp/reducer/LedgerSignalShimmer
+            du /tmp/reducer/LedgerSignalShimmer | awk '{print "du1",$1}'
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'LedgerSignalShimmer'
+  gnome-throw:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Culture gel under the hood
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; find /usr/lib -maxdepth 2 -type d -not -name 'lib*' -exec du -sh {} + 2> /dev/null | cat -n; true ; } > /tmp/reducer/blake_d8ab3d2
+            du /tmp/reducer/blake_d8ab3d2 | awk '{print "du1",$1}'
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'blake_d8ab3d2'
+  model-contract:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: shardSlowQueryLogStep
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; printf '%s\n' 'lima prague' | awk '{n=split($0, a, ""); print n}'; true ; } > /tmp/reducer/PEy
+            du /tmp/reducer/PEy | awk '{print "du1",$1}'
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'PEy'
+  FormCanvasHandlerCur:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Copy the GPIO pins from west to tier one
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; for n in banana mango grape lime; do echo -n "${n} "; done; echo; true ; } > /tmp/reducer/run4_cc15
+            du /tmp/reducer/run4_cc15 | awk '{print "du1",$1}'
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'run4_cc15'
+  l-progress:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Immediately list the download queue
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; start=$(date +%s%N); sleep 0.1; end=$(date +%s%N); echo "$(( (end - start) / 1000000 )) ms"; true ; } > /tmp/reducer/betavioletnode
+            du /tmp/reducer/betavioletnode | awk '{print "du1",$1}'
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'betavioletnode'
+workflows:
+  matrix:
+    jobs:
+      - swL5LzZfq
+      - produce-staging-test-matrix:
+          requires:
+            - swL5LzZfq
+      - OY2:
+          requires:
+            - swL5LzZfq
+      - kilo:
+          requires:
+            - OY2
+      - frame-city-birch:
+          requires:
+            - OY2
+      - blast-off:
+          requires:
+            - frame-city-birch
+      - hvnouzWHV3l:
+          requires:
+            - frame-city-birch
+      - green-light:
+          requires:
+            - hvnouzWHV3l
+      - Tool67:
+          requires:
+            - hvnouzWHV3l
+      - py310-bench:
+          requires:
+            - Tool67
+      - String-Uuid-Pattern:
+          requires:
+            - Tool67
+      - mike-1:
+          requires:
+            - String-Uuid-Pattern
+      - Service-Tag:
+          requires:
+            - String-Uuid-Pattern
+      - test:
+          requires:
+            - Service-Tag
+      - townAmt:
+          requires:
+            - Service-Tag
+      - RolloutStaging:
+          requires:
+            - townAmt
+      - x0:
+          requires:
+            - townAmt
+      - INFRA-164:
+          requires:
+            - x0
+      - fin1:
+          requires:
+            - x0
+      - package:
+          requires:
+            - fin1
+      - SS-PROC-TM
+      - lockclock:
+          requires:
+            - SS-PROC-TM
+      - node18-release:
+          requires:
+            - lockclock
+      - xY9:
+          requires:
+            - lockclock
+      - c1us7er:
+          requires:
+            - xY9
+      - preview-v6:
+          requires:
+            - c1us7er
+      - RULE_H:
+          requires:
+            - c1us7er
+      - revertDecoratorByteDigest:
+          requires:
+            - RULE_H
+      - dotnet8-build:
+          requires:
+            - revertDecoratorByteDigest
+      - label_camera_scope_violet:
+          requires:
+            - revertDecoratorByteDigest
+      - IMPORT:
+          requires:
+            - label_camera_scope_violet
+      - WEB-212:
+          requires:
+            - IMPORT
+      - gradient_ref:
+          requires:
+            - IMPORT
+      - ledger_996:
+          requires:
+            - gradient_ref
+      - lets-go:
+          requires:
+            - ledger_996
+      - button_pad_session:
+          requires:
+            - ledger_996
+      - gnome-throw:
+          requires:
+            - button_pad_session
+      - ken-ship:
+          requires:
+            - gnome-throw
+      - db032:
+          requires:
+            - gnome-throw
+      - model-contract:
+          requires:
+            - db032
+      - chore-8949:
+          requires:
+            - model-contract
+      - TotalReader:
+          requires:
+            - model-contract
+      - FormCanvasHandlerCur:
+          requires:
+            - TotalReader
+      - nov3-ship:
+          requires:
+            - FormCanvasHandlerCur
+      - oscar_server:
+          requires:
+            - FormCanvasHandlerCur
+      - l-progress:
+          requires:
+            - oscar_server
+      - cf:
+          requires:
+            - l-progress
+      - union_arg
+      - STUB_LULLABY_SELECT_MULTI
+      - jan26-rev:
+          requires:
+            - union_arg
+            - STUB_LULLABY_SELECT_MULTI
+      - fx-2a:
+          requires:
+            - union_arg
+            - STUB_LULLABY_SELECT_MULTI
+      - rocket:
+          requires:
+            - union_arg
+            - STUB_LULLABY_SELECT_MULTI
+      - validate-end-to-end-artifact-bundle:
+          requires:
+            - union_arg
+            - STUB_LULLABY_SELECT_MULTI
+      - Ship_Pipeline3:
+          requires:
+            - union_arg
+            - STUB_LULLABY_SELECT_MULTI
+      - API-955:
+          requires:
+            - union_arg
+            - STUB_LULLABY_SELECT_MULTI
+      - dp-01:
+          requires:
+            - union_arg
+            - STUB_LULLABY_SELECT_MULTI
+      - wasBack
+      - v3-preview:
+          requires:
+            - wasBack
+      - registry_nightly_s390x:
+          requires:
+            - wasBack
+      - validate-quick-release-candidate:
+          requires:
+            - registry_nightly_s390x
+      - uCacheSegment:
+          requires:
+            - registry_nightly_s390x
+      - pat-ci:
+          requires:
+            - uCacheSegment
+      - monitor077:
+          requires:
+            - uCacheSegment
+      - sierra:
+          requires:
+            - monitor077
